@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+ <title>Home</title> 
+ <link rel="stylesheet" href="{% static 'responsive.css' %}">
+
+ {% endblock %}
+
+
+{% block body %} 
+
+{% load static %}
+<div class="header">
+<div class="container__header">
+    <div class="container content"> 
+        <span><b>CONNECT TO WORK </b></span>
+        <h1>Find your work near you with us</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore accusantium obcaecati nihil perferendis quas? Iure facilis qui perferendis, ipsam illo quaerat libero, perspiciatis fuga.</p>
+        <a href="{% url 'signup' %}" class="btn_dark">Register</a>
+        <a href="" class="btn_dark side">Upgrade </a>
+
+    </div>
+    <div class="container"> 
+        <div class="container__img">
+            <img src="{% static 'images/hero_main.png' %}" alt="header_img">
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Conditions -->
+{% if user %}
+{% include './user/userhome.html' %}
+{% endif %}
+
+{% if worker %}
+{% include './workerhome.html' %}
+{% endif %}
+
+{% endblock %}

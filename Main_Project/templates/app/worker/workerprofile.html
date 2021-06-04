@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% block head %}
+<title>My Profile</title>
+<style>
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding-bottom: 50px;
+  }
+</style>
+{% endblock %} {% block body %} {% load static %}
+<div class="bg">
+  <div class="profile_section">
+    <div class="img_section">
+      <!-- <img
+        src="{% static 'images/male.png' %}"
+        alt="profile"
+        width="100px"
+        height="100px"
+        style="border-radius: 50% !important; padding: 15px 6px"
+      /> -->
+
+      {% if data.gender == "Male" %}
+      <img src="{% static 'images/male.png' %}"  alt="profile"
+      width="100px"
+      height="100px"
+      style="border-radius: 50% !important; padding: 15px 6px">
+      {% endif %}
+
+          {% if data.gender == "Female" %}
+      <img src="{% static 'images/female.png' %}"  alt="profile"
+      width="100px"
+      height="100px"
+      style="border-radius: 50% !important; padding: 15px 6px">
+
+
+      {% endif %}
+
+
+
+    </div>
+    <div class="content_section">
+      <h2>{{data.username.first_name}} {{data.username.last_name}} </h2>
+      <h4 style="color: rgba(0, 0, 0, 0.6)">{{data.occupation}}</h4>
+      <span style="color: rgba(0, 0, 0, 0.9); font-size: 14px"
+        >{{data.address}} ({{data.pincode}})</span
+      >
+      <div class="contact" style="padding: 20px 0px">
+        <a href="tel:{{data.phone}}">Call me</a>
+        <a href="">Chat Now</a>
+      </div>
+    </div>
+  </div>
+  <div style="width: 300px; height: auto; margin: 0 auto">
+    <div style="margin-left: 10px">
+      <h3>Work Experience</h3>
+      <div class="line" style="margin: -17px 0px; height: 2.5px"></div>
+      <h5>{{data.experience}}</h5>
+    </div>
+    <div style="margin-left: 10px">
+      <h3>Ratings</h3>
+      <div
+        class="line"
+        style="width: 75px; height: 2.8px; margin: -17px 0px"
+      ></div>
+      <h5>4.3+</h5>
+    </div>
+    <div style="margin-left: 10px">
+      <h3>Price</h3>
+      <div class="line" style="width: 50px; margin: -19px 0px"></div>
+      <h5>{{data.rupees}}/{{data.hourorday}}</h5>
+    </div>
+
+    <!----- Some Feedbacks --------->
+    <div style="margin-left: 10px">
+      <h3>Some Reviews</h3>
+      <div class="line" style="width: 135px; margin: -19px 0px 4px 0px"></div>
+
+      <div class="review_card">
+        <div class="review_content">
+          <p style="font-weight: 600; margin: 0; font-size: 16px">
+            Ankit Kumar
+          </p>
+          <p style="margin: 0; font-size: 13px; color: rgba(0, 0, 0, 0.8)">
+            Aliganj , Lucknow
+          </p>
+          <p style="margin: 1px">Done a great job.</p>
+        </div>
+      </div>
+      <div class="review_card">
+        <div class="review_content">
+          <p style="font-weight: 600; margin: 0; font-size: 16px">
+            Ankit Kumar
+          </p>
+          <p style="margin: 0; font-size: 13px; color: rgba(0, 0, 0, 0.8)">
+            Aliganj , Lucknow
+          </p>
+          <p style="margin: 1px">Done a great job.</p>
+        </div>
+      </div>
+    </div>
+    <!-- ----------------------------- -->
+
+    <!-- Update Profile Link -->
+
+    <div style="margin-left: 10px; margin-top:30px">
+      {% if btn %}
+     <a href="{% url 'editprofile' %}" style="text-decoration: none;background: tomato;padding: 6px 8px;color: white;">Update Profile</a>
+     {% endif %}
+    </div>
+    <!-- ---------------------- -->
+  </div>
+</div>
+
+{% endblock %}

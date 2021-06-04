@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block head %}
+<title>My Profile</title>
+<style>
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding-bottom: 50px;
+
+  }
+</style>
+{% endblock %} {% block body %} {% load static %}
+<div class="bg">
+  <div class="profile_section">
+    <div class="img_section">
+      <img
+        src="{% static 'images/male.png' %}"
+        alt="profile"
+        width="100px"
+        height="100px"
+        style="border-radius: 50% !important; padding: 15px 6px"
+      />
+
+      
+      <!-- {% if data.gender == "Male" %}
+      <img src="{% static 'images/male.png' %}"  alt="profile"
+      width="100px"
+      height="100px"
+      style="border-radius: 50% !important; padding: 15px 6px">
+      {% endif %}
+
+          {% if data.gender == "Female" %}
+      <img src="{% static 'images/female.png' %}"  alt="profile"
+      width="100px"
+      height="100px"
+      style="border-radius: 50% !important; padding: 15px 6px">
+      {% endif %}
+ -->
+
+    </div>
+    <div class="content_section">
+      <h2>{{data.username.first_name}} {{data.username.last_name}} </h2>
+      <span style="color: rgba(0, 0, 0, 0.9); font-size: 14px"
+        >{{data.address}} ({{data.pincode}})</span
+      >
+      <!-- <span style="color: rgba(0, 0, 0, 0.9); font-size: 16px"
+      >Contact : 89637378288</span
+    > -->
+    </div>
+  </div>
+  <div style="width: 300px; height: auto; margin: 0 auto">
+    <div style="margin-left: 10px">
+      <!-- <button>Write a Review</button> -->
+      <h3 style="margin: 10px 0px 5px 0px;">Write a Review </h3>
+      <a href="" style="text-decoration: none;">Write Now</a>
+
+      <h3 style="margin: 10px 0px 5px 0px;">My Work</h3>
+      <a href="{% url 'myworks' %}" style="text-decoration: none;">Create or See Works</a>
+      <!-- <a href="{% url 'logout' %}">Logout</a> -->
+      
+    </div>
+        <!-- Update Profile Link -->
+        <div style="margin-left: 10px; margin-top:30px">
+          <a href="{% url 'editprofile' %}" style="text-decoration: none;background: tomato;padding: 6px 8px;color: white;">Update Profile</a>
+         </div>
+         <!-- ---------------------- -->
+    </div>
+</div>
+
+{% endblock %}

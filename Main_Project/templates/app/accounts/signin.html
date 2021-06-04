@@ -1,0 +1,27 @@
+
+
+    {% extends 'base.html' %}
+    {% block head %} 
+    <title>Signin</title> 
+    <style>
+        
+    </style>
+    {% endblock %}
+
+    
+    {% block body %}
+<div class="form_wrap">
+
+    <form method="POST" style="margin-top: 80px;">
+        {% csrf_token %}
+        <h3 style="color: crimson;margin-left: 15px;">Login</h3>  
+        <input type="tel" placeholder="Phone Number" name="phone" />
+        <input type="password" placeholder="Password" name="pass" />
+        {% if msg %}
+<span class="error" style="color: red;margin-left: 20px;">{{msg}}</span>
+{% endif %}
+        <input type="submit" value="Login" class="btn_submit" />
+    </form>
+</div>
+    
+    {% endblock %}

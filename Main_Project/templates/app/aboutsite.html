@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>About</title> 
+<style>
+    
+</style>
+{% endblock %}
+
+{% block body %} 
+
+{% load static %}
+<div class="container__header" style="background: none;">
+    <div class="container content" style="margin-top: -10px;"> 
+
+        <h1>About Us</h1>
+        <p>We are here to help you in finding your works without much research. All the works near you will be on your screen just check , call and get your prices.
+            Any user can search for workers for his works and find the workers at his screen with complete profile details , reviews and previous feedbacks.
+        <br>
+        It will make the search work easier to both users and workers. No need to go out just open website and search the workers near your location.</p>
+        <a href="{% url 'home' %}" class="btn_dark" style="font-size: 20px;">Back to home</a>
+        <!-- <a href="" class="btn_dark side">Upgrade </a> -->
+
+    </div>
+    <div class="container"> 
+        <div class="container__img">
+            <img src="{% static 'images/about.png' %}" alt="header_img">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

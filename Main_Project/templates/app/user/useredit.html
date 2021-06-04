@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block head %}
+<title>Edit Profile</title>
+<style>
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding-bottom: 50px;
+
+  }
+</style>
+{% endblock %} {% block body %} {% load static %}
+<div class="bg">
+  <div class="profile_section">
+    <form method="POST" action="" style="border: 2px solid rgba(172, 13, 40, 0.836);">
+        {% csrf_token %}
+    
+            <h3 style="color: crimson;margin-left: 15px;">Update Profile</h3>
+            <input type="text" placeholder="First Name" name="firstname" value="{{user.first_name}}"/>
+            <input type="text" placeholder="Last Name" name="lname" value="{{user.last_name}}" />
+            <input type="number" placeholder="Phone Number" name="phone" value="{{data.phone}}" /> 
+          <input type="text" autocomplete="" name="address" placeholder="Street or Locality , City , State" value="{{data.address }}"/>
+
+             <input type="number" name="pin" placeholder="Pincode e.g. 226024" value="{{data.pincode}}" />
+             
+    
+    
+    {% if msg %}
+    <span class="error" style="color: red;margin-left: 20px;">{{msg}}</span>
+    {% endif %}
+    {{btn}}
+   
+    <button style="text-decoration: none;background: tomato;padding: 6px 8px;color: white;font-size: 18px;margin: 10px 0px;font-weight: 400;box-shadow: 4px 4px 5px rgba(199, 201, 202, 0.8);border-radius: 4px;">Save Profile</button>
+    
+    
+        </form>
+
+  </div>
+
+
+
+{% endblock %}

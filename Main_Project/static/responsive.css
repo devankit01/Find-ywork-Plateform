@@ -1,0 +1,45 @@
+/* Float four columns side by side */
+.column {
+    /* margin: 0 auto; */
+    float: left;
+    width: 30%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 auto;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .card{
+      margin: 10px 0px;
+  }
+
+  .card h2{
+    margin: 0;
+  }
+  .card span{
+      display: block;
+  }
+  .card {
+    box-shadow: 5px 5px 8px rgba(0,0,0,0.1);
+    padding: 10px 15px;
+    text-align: center;
+    background-color: #fafafa;
+    /* border: 1px solid; */
+  }
+
+  /* Responsive columns */
+  @media screen and (max-width: 800px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Style the counter cards */

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% block head %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <body>
+       
+        <div class="sidepan">
+
+            <button class="toggle">&#9776;</button>
+            {% if option %}
+            <a href="{% url 'logout' %}">  <button class="modal_btn" >Logout</button></a> 
+            {% else %}
+            <a href="{% url 'signin' %}">  <button class="modal_btn" >Login</button></a> 
+                {% endif %}
+        </div>
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <h2>Find'y work</h2>
+        </div>
+
+            <!-- Links -->
+            <ul class="links add__class">
+            <h1>Find'y work</h1>
+
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                    <a href="">Explore Works</a>
+                </li>
+
+            
+                    {% if option %}
+                   <li> <a href="{% url 'profile' %}">Profile </a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Register </a></li>
+                    {% endif %}
+
+             
+                <li>
+                    <a href="">Any issue?</a>
+                </li>
+            </ul>
+            <!-- Ends -->
+    </aside>
+    {% block body %}
+    {% endblock %}
+
+
+    <script>
+        const btn = document.querySelector('.toggle');
+    const links = document.querySelector('.links');
+    btn.addEventListener('click',() =>{
+    if (links.classList.contains('add__class')){
+        links.classList.remove('add__class');
+
+
+    }
+    else{
+        links.classList.add('add__class');
+
+    }
+})
+
+
+
+
+
+
+var show1 = document.querySelector('.show_item');
+var show2 = document.querySelector('.show_item_one');
+var show3 = document.querySelector('.show_item_two');
+var show4 = document.querySelector('.show_item_three');
+
+
+
+show1.classList.add('hide');
+show2.classList.add('hide');
+show3.classList.add('hide');
+show4.classList.add('hide');
+
+
+
+
+const fire = () =>{
+    console.log(profile.value)
+    if ((profile.value) == '0'){
+        console.log('User');
+
+        show1.classList.add('hide');
+        show2.classList.add('hide');
+        show3.classList.add('hide');
+        show4.classList.add('hide');
+
+
+
+        
+    }
+    else{
+        console.log('Worker');
+        // show.style.display = block;
+
+        show1.classList.remove('hide');
+        show2.classList.remove('hide');
+        show3.classList.remove('hide');
+        show4.classList.remove('hide');
+
+
+
+
+
+    }
+}
+
+
+    </script>
+
+
+</body>
+</html>
