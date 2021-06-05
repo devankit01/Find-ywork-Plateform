@@ -251,7 +251,8 @@ h4 {
   padding: 1px 8px;
 }
 .container__work{
-
+  display: flex;
+  justify-content: flex-start;
   background-color:rgb(240, 236, 236);
   padding: 20px 30px;
 
@@ -274,6 +275,11 @@ h4 {
   .card {
     margin-right: 20px;
     margin-top: 0px;
+  }
+  .container__work{
+    flex-direction: column;
+    padding: 20px 30px;
+  
   }
   /* .btn_dark {
   padding: 10px 15px;

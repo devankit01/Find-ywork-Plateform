@@ -1,10 +1,30 @@
 {% extends 'base.html' %} {% block head %}
 <title>My Works</title>
 <style>
+.form__work{
+  border: none;
+  box-shadow: none;
+  background-color:white;
+  padding:25px 20px;
+}
+.child:nth-child(2){
+  width:65%;
+}
+.form__work input, .form__work textarea{
+  width:85%;
+
+}
+.form__work select{
+  width:91%;
+
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  background-color:white;
+  margin:25px 0px;
+
 }
 
 td, th {
@@ -18,9 +38,45 @@ tr:nth-child(even) {
 }
 
 
+textarea{
+  padding:4px 3px;
+  font-weight: 400;
 
-textarea::placeholder{
   font-family: "Poppins", sans-serif !important;
+  resize: none;
+
+}
+textarea::placeholder{
+  font-weight: 400;
+  font-family: "Poppins", sans-serif !important;
+
+}
+.btn{
+  /* display: inline-block; */
+  width:91%!important;
+  cursor: pointer;
+  border: 1px solid #000;
+  background:transparent;
+  font-weight: bold;
+
+}
+@media only screen and (max-width: 800px) {
+  .form__work input, .form__work textarea{
+  width:85%;
+
+}
+.form__work select{
+  width:91%;
+
+}
+.form__work{
+  margin: 20px -12px;
+  padding:15px 10px;
+
+}
+.child:nth-child(2){
+  width:100%;
+}
 
 }
 </style>
@@ -30,10 +86,41 @@ textarea::placeholder{
 <div class="container__work">
 
 
-<div class="child">
+  <div class="child">
+    <h2>Create Work</h2>
+    <div class="line" style="width: 160px; margin: -19px 0px 4px 0px"></div>
+  
+    <form action="{% url 'myworks' %}"  method="POST" class="form__work">
+      {% csrf_token %}
+      <input type="text" placeholder="Work Name or Title" name="work_name">
+      <input type="number" placeholder="Max Amount in Rs." name="amount">
+      <input type="number" placeholder="Max Days " name="days">
+      <select  name="occupation" class="show_item_one" required>
+        <option value="-1" default>Occupation</option>
+        <option value="IT Worker (Website, App etc.)">IT Worker (Website, App etc.)</option>
+        <option value="Freelancer">Freelancer</option>
+        <option value="Designer">Designer</option>
+        <option value="Household Worker">Household Worker</option>
+        <option value="Cattering Services">Cattering Services</option>
+        <option value="Tutor">Tutor</option>
+        <option value="Painter">Painter</option>
+        <option value="Carpenter">Carpenter</option>
+        <option value="Tailor">Tailor</option>
+        <option value="Plumber">Plumber</option>
+        <option value="Electrician">Electrician</option>
+        <option value="Mechanic">Mechanic</option>
+  
+    </select>
+    <textarea name="description" id="description" placeholder="Write about Work" rows="4"></textarea>
+    <input type="submit" value="Submit" name="Submit" class="btn">
+    </form>
+  </div>
+  
+<div class="child" >
   <h2>My Works</h2>
   <div class="line" style="width: 125px; margin: -19px 0px 4px 0px"></div>
-<table style="margin:25px 0px;">
+  <div style="overflow-x:auto;">
+<table  >
   <tr>
     <th>S. No.</th>
     <th>Work Name</th>
@@ -46,22 +133,22 @@ textarea::placeholder{
     <th>Edit</th>
     <th>Delete</th>
   </tr>
-  
+
+  {% for item in works %}
   <tr>
-    <td>1.</td>
-    <td>Ecommerce Website</td>
-    <td>Freelancer</td>
+    <td>{{forloop.counter}}.</td>
+    <td>{{item.title}}</td>
+    <td>{{item.category}}</td>
     <td>Ankit Gupta</td>
-    <td>21 June , 2021</td>
-    <td>Click</td>
-    <td>Edit</td>
-    <td>Delete</td>
+    <td>{{item.date}}</td>
+    <td> <a href="{{item.id}}"><i class="bi bi-pencil-square"></i></a></td>
+    <td> <a href="{{item.id}}"><i class="bi bi-pencil"></i></a></td>
+    <td> <a href="{{item.id}}" style="color:red;"><i class="bi bi-trash"></i></a></td>
   </tr>
-
+{% endfor %}
 </table>
-
 </div>
-
+</div>
 
 
 </div>

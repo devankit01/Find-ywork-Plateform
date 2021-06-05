@@ -265,23 +265,33 @@ def about(request):
     return render(request, 'app/aboutsite.html', {'option': option})
 
 
-def search(request):
-    option = checksession(request)
-    return render(request, 'app/worker/searchworker.html', {'option': option})
+# def search(request):
+#     option = checksession(request)
+#     return render(request, 'app/worker/searchworker.html', {'option': option})
 
 
 def myworks(request):
     option = checksession(request)
+    user = User.objects.get(username=request.session['username'])
+    data = UserProfile.objects.get(username=user)
     if request.method == 'POST':
-        pass
+        title = request.POST.get('work_name')
+        amount = request.POST.get('amount')
+        days = request.POST.get('days')
+        category = request.POST.get('occupation')
+        description = request.POST.get('description')
+        print(title, amount, days ,category, description)
+
+        newWork = Work.objects.create(title=title, maxamount=amount, maxdays=days, category=category, description=description, creator = data )
+        newWork.save()
+        return redirect('myworks')
+        
     else:
         try:
-            user = User.objects.get(username=request.session['username'])
-            data = UserProfile.objects.get(username=user)
             if option and data:
                 print(user)
                 works = Work.objects.filter(creator=data)
-                # print(works)
+                print(works)
                 return render(request, 'app/user/myworks.html', {'option': option, 'works': works})
         except:
             return HttpResponse('Error 404')
