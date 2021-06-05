@@ -272,16 +272,20 @@ def search(request):
 
 def myworks(request):
     option = checksession(request)
-    try:
-        user = User.objects.get(username=request.session['username'])
-        data = UserProfile.objects.get(username=user)
-        if option and data:
-            print(user)
-            works = Work.objects.filter(creator=data)
-            # print(works)
-            return render(request, 'app/user/myworks.html', {'option': option, 'works': works})
-    except:
-        return HttpResponse('Error 404')
+    if request.method == 'POST':
+        pass
+    else:
+        try:
+            user = User.objects.get(username=request.session['username'])
+            data = UserProfile.objects.get(username=user)
+            if option and data:
+                print(user)
+                works = Work.objects.filter(creator=data)
+                # print(works)
+                return render(request, 'app/user/myworks.html', {'option': option, 'works': works})
+        except:
+            return HttpResponse('Error 404')
+
 
 
 def checksession(request):
