@@ -1,3 +1,56 @@
-<div>
-Worker Home
+<div class="userhome_container">
+
+    <div class="search_option">
+        <form class="search_form"  action="{% url 'search' %}" name="search" value="{{request.GET.q}}" method="GET" >
+      
+            <input type="text" placeholder="Search here "  name="q" value="{{request.GET.q}}" autocomplete="off"/>
+            <button type="submit" value="Search">🔎</button>
+        </form>
+    </div>
+
+
+    <div class="headline">
+    <h2>Make work</h2>
+    <div class="line" style="width: 132px; margin: -19px 0px 4px 0px"></div>
+</div>
+
+    {% load static %}
+
+    <!-- workers near you -->
+    <div class="row">
+
+{% for i in works %}
+        <div class="column">
+            <div class="card">
+        
+              
+                  <div class="right" style="text-align:left;">
+                    <button class="card__style">{{i.category}}</button>
+
+                      <h2>{{i.title}}</h2>
+                     
+                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">{{i.creator.username.first_name}} {{i.creator.username.last_name}}</span>
+                      <!-- <span>Rating : 4.2+</span> -->
+          
+                      <span class="rating">&#8377;&nbsp;&nbsp; &nbsp;{{i.maxamount}}</span>
+                      <span class="rating">  <i class="bi bi-calendar-date"></i> &nbsp; {{i.maxdays}} Days</span>
+                      <div style="margin: 14px 0px;">
+                      <a href="{% url 'workDescription' id=i.id %}" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px; ">Explore Work</a>
+                      <!-- <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a> -->
+                  </div>
+  
+                 
+  
+              </div>
+            </div>
+          </div>
+
+
+        {% endfor %}
+   
+        
+      </div>
+    <!-- ---------------------------------- -->
+
+    
 </div>

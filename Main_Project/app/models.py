@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+
 # User model -> Firstname , Lastname , password , email , username
 # Create your models here.
 class UserProfile(models.Model):
@@ -38,6 +39,8 @@ class Work(models.Model):
     creator = models.ForeignKey(UserProfile ,on_delete = models.CASCADE)
 
 class Bid(models.Model):
+    proposal_price = models.CharField(max_length = 20)
+    proposal_days = models.CharField(max_length = 20)
     work = models.ForeignKey('Work',on_delete = models.CASCADE)
     worker = models.ForeignKey('WorkerProfile', on_delete = models.CASCADE)
     

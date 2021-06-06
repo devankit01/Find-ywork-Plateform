@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block head %} {% load static %}
+<title>Work Description</title>
+<style>
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding: 20px 10%;
+  }
+  .description_card {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+  }
+</style>
+<link rel="stylesheet" href="{% static 'responsive.css' %}" />
+
+{% endblock %} {% block body %}
+<div class="bg">
+
+    <h1>Work Description</h1>
+    <span>Home / Work Description</span>
+
+
+</div>
+<div class="description_card">
+    <h2>{{obj.title}}</h2>
+    <h3 class="">{{obj.category}}</h3>
+
+    <span style="color: rgba(0, 0, 0, 0.4); font-weight: 600"
+      >{{obj.creator.username.first_name}}
+      {{obj.creator.username.last_name}}</span>
+
+    <h4>&#8377;&nbsp;&nbsp; &nbsp;&nbsp;{{obj.maxamount}}</h4>
+    <h4><i class="bi bi-calendar-date"></i> &nbsp; {{obj.maxdays}} Days</h4>
+  </div>
+  {% endblock %}

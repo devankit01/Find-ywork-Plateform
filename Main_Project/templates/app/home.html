@@ -4,6 +4,9 @@
  <title>Home</title> 
  <link rel="stylesheet" href="{% static 'responsive.css' %}">
 
+ <style>
+  
+ </style>
  {% endblock %}
 
 
@@ -35,7 +38,7 @@
 {% endif %}
 
 {% if worker %}
-{% include './workerhome.html' %}
+{% include './worker/workerhome.html' %}
 {% endif %}
 
 {% endblock %}

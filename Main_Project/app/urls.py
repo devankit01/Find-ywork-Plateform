@@ -20,6 +20,9 @@ urlpatterns = [
     path('search/',search , name = "search"),
     path('myworks/',myworks , name = "myworks"),
 
+    path('work/description/<id>', workDescription , name = "workDescription"),
+
+
 
     path('search',search , name = "search"),
 

@@ -30,7 +30,8 @@ def home(request):
                 print('Worker HomePage')
                 worker = True
                 user = False
-                return render(request, 'app/home.html', {'option': option, 'worker': worker, 'user': user})
+                objects =  Work.objects.all()
+                return render(request, 'app/home.html', {'option': option, 'worker': worker, 'user': user, 'works' : objects})
             except:
                 pass
     user = False
@@ -323,3 +324,10 @@ def search(request):
         return render(request, 'app/worker/searchworker.html')
     else:
         print('hi')
+
+
+def workDescription(request, id):
+
+    workObject = Work.objects.get(id=id)
+    print(workObject)
+    return render(request, 'app/user/workDescription.html',{'obj' : workObject})
