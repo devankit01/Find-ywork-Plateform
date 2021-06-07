@@ -1,0 +1,78 @@
+.form__work{
+    border: none;
+    box-shadow: none;
+    background-color:white;
+    padding:25px 20px;
+  }
+  .child:nth-child(2){
+    width:65%;
+  }
+  .form__work input, .form__work textarea{
+    width:85%;
+  
+  }
+  .form__work select{
+    width:91%;
+  
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color:white;
+    margin:25px 0px;
+  
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  
+  textarea{
+    padding:4px 3px;
+    font-weight: 400;
+  
+    font-family: "Poppins", sans-serif !important;
+    resize: none;
+  
+  }
+  textarea::placeholder{
+    font-weight: 400;
+    font-family: "Poppins", sans-serif !important;
+  
+  }
+  .btn{
+    /* display: inline-block; */
+    width:91%!important;
+    cursor: pointer;
+    border: 1px solid #000;
+    background:transparent;
+    font-weight: bold;
+  
+  }
+  @media only screen and (max-width: 800px) {
+    .form__work input, .form__work textarea{
+    width:85%;
+  
+  }
+  .form__work select{
+    width:91%;
+  
+  }
+  .form__work{
+    margin: 20px -12px;
+    padding:15px 10px;
+  
+  }
+  .child:nth-child(2){
+    width:100%;
+  }
+  
+  }

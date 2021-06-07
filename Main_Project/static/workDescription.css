@@ -1,0 +1,56 @@
+
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding: 20px 0% 20px 0%;
+  }
+  .description_card {
+    width: 80%;
+    height: auto;
+    margin: 30px auto;
+  }
+  .description_card h2,
+  .description_card h3 {
+    margin: 0;
+    padding: 0;
+  }
+  .description {
+    width: 80%;
+    height: auto;
+    margin: 20px auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 80%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr td:nth-child(1) {
+    font-weight: bold;
+  }
+  .form__bid {
+    padding: 4px 6px;
+    border: 0;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .form__bid::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .form__btn {
+    padding: 2px 8px;
+    background: transparent;
+    border: 1px solid;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 8px;
+  }

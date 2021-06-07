@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from app.models import UserProfile, WorkerProfile, Work
+from app.models import UserProfile, WorkerProfile, Work , Bid
 from django.contrib import auth
 from django.contrib.auth.models import User
 
@@ -327,7 +327,39 @@ def search(request):
 
 
 def workDescription(request, id):
+    option = checksession(request)
 
-    workObject = Work.objects.get(id=id)
-    print(workObject)
-    return render(request, 'app/user/workDescription.html',{'obj' : workObject})
+    workObj = Work.objects.get(id=id)
+
+    try:
+        userObj = User.objects.get(username = request.session['username'])
+        workerProfile = WorkerProfile.objects.get(username = userObj)
+        print(workerProfile)
+    except: 
+        workerProfile = None
+
+    # Bid Place
+    response = Bid.objects.filter(worker = workerProfile, work=workObj)
+    print(response)
+
+    if len(response) == 0:
+        print(response.count())
+        bid = False
+        bidData = None
+    else:
+        bidData = Bid.objects.get(worker = workerProfile, work=workObj)
+        print(bidData)
+        bid = True
+
+
+    if request.method == 'POST':
+        bidamount = request.POST.get('bidamount')
+        biddays = request.POST.get('biddays')
+        print(bidamount, biddays)
+
+        newBid = Bid.objects.create(worker = workerProfile, work=workObj , proposal_price = bidamount , proposal_days = biddays)
+        newBid.save()
+
+        return redirect('workDescription')
+
+    return render(request, 'app/user/workDescription.html',{'obj' : workObj , 'option' : option , 'bid' : bid ,'workerProfile' : workerProfile, 'bidData' : bidData})
