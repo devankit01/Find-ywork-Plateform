@@ -1,0 +1,15 @@
+.table__two{
+    margin: 40px 0px 0.7px 0px;
+}
+.table__two tr td {
+    font-weight: normal;
+  }
+.table__two tr td a {
+    font-size: 20px;
+}
+@media only screen and (max-width: 800px) {
+.table__one{
+    width: 100%;
+}
+
+}

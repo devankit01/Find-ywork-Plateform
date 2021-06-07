@@ -33,8 +33,8 @@ class Work(models.Model):
     title = models.CharField(max_length = 100)
     description = models.TextField()
     category = models.CharField(max_length=40)
-    maxamount = models.IntegerField()
-    maxdays = models.IntegerField()
+    maxamount = models.CharField(max_length=40)
+    maxdays = models.CharField(max_length=40)
     date = models.DateTimeField(default=datetime.now(),blank=True)
     creator = models.ForeignKey(UserProfile ,on_delete = models.CASCADE)
 

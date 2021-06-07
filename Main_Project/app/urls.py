@@ -19,8 +19,10 @@ urlpatterns = [
     path('about/',about , name = "about"),
     path('search/',search , name = "search"),
     path('myworks/',myworks , name = "myworks"),
+    path('delete/<id>',workDelete , name = "workDelete"),
 
-    path('work/description/<id>', workDescription , name = "workDescription"),
+    path('work-info/<id>', workDescription , name = "workDescription"),
+    path('work-bids/<id>', workBids , name = "workBids"),
 
 
 

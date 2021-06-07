@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from app.models import UserProfile, WorkerProfile, Work , Bid
 from django.contrib import auth
 from django.contrib.auth.models import User
-
+import random
 # Create your views here.
 
 
@@ -237,28 +237,15 @@ def logout(request):
 
 
 def seeprofile(request, key):
-    try:
-        user = User.objects.get(username=key)
-
-        if UserProfile.objects.filter(username=user).exists():
-            print('User Exist')
-            return HttpResponse(user)
-        if WorkerProfile.objects.filter(username=user).exists():
+    if True:
+        try:
+            user = User.objects.get(username=key)
             data = WorkerProfile.objects.get(username=user)
-            session_user = User.objects.get(
-                username=request.session['username'])
-            if session_user == user:
-                btn = True
-            else:
-                btn = False
-            print('Worker Exist')
-            return render(request, 'app/worker/workerprofile.html', {'data': data, 'user': user, 'btn': btn, 'option': True})
-
-        return HttpResponse(user)
-
-    except:
-        return HttpResponse('Error 404')
-
+            print(user.first_name)
+            return render(request, 'app/seeprofile.html', {'option': True, 'data': data})
+        except:
+                return HttpResponse('Error 404')
+    return HttpResponse('Error 404')
 
 # About page
 def about(request):
@@ -277,13 +264,19 @@ def myworks(request):
     data = UserProfile.objects.get(username=user)
     if request.method == 'POST':
         title = request.POST.get('work_name')
-        amount = request.POST.get('amount')
-        days = request.POST.get('days')
+        amount = request.POST.get('amount',None)
+        days = request.POST.get('days',None)
         category = request.POST.get('occupation')
         description = request.POST.get('description')
         print(title, amount, days ,category, description)
+        randomlist = []
+        for i in range(0,6):
+            n = random.randint(0,9)
+            randomlist.append(str(n))
+        id = ''.join(randomlist)
 
-        newWork = Work.objects.create(title=title, maxamount=amount, maxdays=days, category=category, description=description, creator = data )
+
+        newWork = Work.objects.create(id=id, title=title, maxamount=amount, maxdays=days, category=category, description=description, creator = data )
         newWork.save()
         return redirect('myworks')
         
@@ -358,8 +351,27 @@ def workDescription(request, id):
         print(bidamount, biddays)
 
         newBid = Bid.objects.create(worker = workerProfile, work=workObj , proposal_price = bidamount , proposal_days = biddays)
-        newBid.save()
+        # newBid.save()
 
-        return redirect('workDescription')
+        return redirect('workDescription' , id=id)
 
     return render(request, 'app/user/workDescription.html',{'obj' : workObj , 'option' : option , 'bid' : bid ,'workerProfile' : workerProfile, 'bidData' : bidData})
+
+
+
+def workBids(request,id):
+    option = checksession(request)
+    obj = Work.objects.get(id=id)
+
+    bids = Bid.objects.filter(work=obj)
+    return render(request, 'app/user/workBids.html',{'option' : option ,'obj' : obj ,'bids' : bids})
+
+
+
+def workDelete(request, id):
+    obj = Work.objects.get(id=id)
+    obj.delete()
+
+    return redirect('myworks')
+
+    
