@@ -1,9 +1,0 @@
-https://wa.me/9919885402
-
-
-https://www.twilio.com/blog/send-whatsapp-message-30-seconds-python
-
-Features : 
-add qr for profile ( Optional )
-Whatsapp chat link
-send message on assigning work

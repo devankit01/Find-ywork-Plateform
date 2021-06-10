@@ -14,13 +14,12 @@
   </div>
 </div>
 
-<div class="description_card">
+<div class="description_card" style="overflow-x: auto">
   <table class="table__one">
     <tr>
       <td>Work Name</td>
       <td>{{obj.title}}</td>
     </tr>
-
 
     <tr>
       <td>Category</td>
@@ -38,42 +37,49 @@
     </tr>
 
     <tr>
-        <td> Posted on</td>
-        <td>{{obj.date}}</td>
-      </tr>
-
-
+      <td>Posted on</td>
+      <td>{{obj.date}}</td>
+    </tr>
   </table>
 
-
   <table class="table__two">
-
-
     <tr>
-        <th>S. No</th>
-        <th>Applied by</th>
-        <th>Proposed Amount</th>
-        <th>Proposed Days</th>
-        <th>Action</th>
-      </tr>
-      {% if bids %}
-      {% for i in bids %}
-      <tr>
-        <td>{{forloop.counter}}.</td>
-        <td>{{i.worker.username.first_name}} {{i.worker.username.last_name}}</td>
-        <td>Rs. {{i.proposal_price}}</td>
-        <td>{{i.proposal_days}} Days </td>
-        <td><a href=""><i class="bi bi-check-lg"></i></a></td>
-      </tr>
-      {% endfor %}
-      {% else %}
-      <table >
-        <tr>
-          <td style="text-align: center;font-weight: normal;">No Data available</td>
-          </tr>
-          </table>
+      <th>S. No</th>
+      <th>Applied by</th>
+      <th>Proposed Amount</th>
+      <th>Proposed Days</th>
+      <th>Action</th>
+      {% if msg %}
+      <th> Review</th>
       {% endif %}
 
+    </tr>
+    {% if bids %} {% for i in bids %}
+    <tr>
+      <td>{{forloop.counter}}.</td>
+      <td>{{i.worker.username.first_name}} {{i.worker.username.last_name}}</td>
+      <td>Rs. {{i.proposal_price}}</td>
+      <td>{{i.proposal_days}} Days</td>
+      {% if msg %}
+      <td>Work Assigned <i class="bi bi-check-circle"></i></td>
+      <td><a  href="{% url 'workReview' id=i.id %}"><i class="bi bi-box-arrow-in-up-right"></i></a></td>
+      {% else %}
+      <td>
+        <a href="{% url 'workAssign' id=i.id %}"
+          ><i class="bi bi-check-lg"></i
+        ></a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %} {% else %}
+    <table>
+      <tr>
+        <td style="text-align: center; font-weight: normal">
+          No Data available
+        </td>
+      </tr>
+    </table>
+    {% endif %}
   </table>
 </div>
 

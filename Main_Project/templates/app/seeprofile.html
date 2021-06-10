@@ -77,28 +77,21 @@
       <h3>Some Reviews</h3>
       <div class="line" style="width: 135px; margin: -19px 0px 4px 0px"></div>
 
-      <div class="review_card">
-        <div class="review_content">
-          <p style="font-weight: 600; margin: 0; font-size: 16px">
-            Ankit Kumar
-          </p>
-          <p style="margin: 0; font-size: 13px; color: rgba(0, 0, 0, 0.8)">
-            Aliganj , Lucknow
-          </p>
-          <p style="margin: 1px">Done a great job.</p>
+      <div class="" style="overflow-y:scroll;height: 120px;border: 1px solid ;padding:2px 10px;margin: 10px 0px;;">
+        {% for i in ratings %}
+        <div class="review_card">
+          <div class="review_content">
+            <p style="font-weight: 600; margin: 0; font-size: 16px">
+              {{i.work.creator.username.first_name}}  {{i.work.creator.username.last_name}}
+            </p>
+            <p style="margin: 0; font-size: 13px; color: rgba(0, 0, 0, 0.8)">
+           {{i.rating}}+
+            </p>
+            <p style="margin: 1px">{{i.feedback}}</p>
+          </div>
         </div>
-      </div>
-      <div class="review_card">
-        <div class="review_content">
-          <p style="font-weight: 600; margin: 0; font-size: 16px">
-            Ankit Kumar
-          </p>
-          <p style="margin: 0; font-size: 13px; color: rgba(0, 0, 0, 0.8)">
-            Aliganj , Lucknow
-          </p>
-          <p style="margin: 1px">Done a great job.</p>
-        </div>
-      </div>
+      {% endfor %}
+    </div>
     </div>
     <!-- ----------------------------- -->
 

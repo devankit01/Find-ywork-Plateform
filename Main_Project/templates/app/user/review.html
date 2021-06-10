@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% block head %} {% load static %}
+<title>Submit Review</title>
+
+<link rel="stylesheet" href="{% static 'responsive.css' %}" />
+<link rel="stylesheet" href="{% static 'workDescription.css' %}" />
+<link rel="stylesheet" href="{% static 'workBids.css' %}" />
+
+<style></style>
+{% endblock %} {% block body %}
+
+<div class="bg">
+  <div class="description">
+    <h1>Submit Review</h1>
+    <span>Home / Review</span>
+  </div>
+</div>
+
+<div class="description_card" style="overflow-x: auto">
+  <table class="table__one">
+    <tr>
+      <td>Work Name</td>
+      <td>{{obj.title}}</td>
+    </tr>
+
+    <tr>
+      <td>Category</td>
+      <td>{{obj.category}}</td>
+    </tr>
+
+    <tr>
+      <td>Amount</td>
+      <td>Rs. {{obj.maxamount}}</td>
+    </tr>
+
+    <tr>
+      <td>Completion Days</td>
+      <td>{{obj.maxdays}} Days</td>
+    </tr>
+
+    <tr>
+      <td>Posted on</td>
+      <td>{{obj.date}}</td>
+    </tr>
+  </table>
+
+  <table class="table__two">
+    <form method="POST" action="">
+        {% csrf_token %}
+      <tr>
+        <td>Rating</td>
+        <td>
+          <input
+            type="number"
+            name="rating"
+            min="2"
+            max="5"
+            style="padding: 4px 8px; border: 1px solid grey; outline: none"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Feedback</td>
+        <td>
+          <textarea
+            name="feedback"
+            style="
+              padding: 4px 8px;
+              border: 1px solid grey;
+              outline: none;
+              margin: 0;
+              resize: none;
+              font-family: Poppins, sans-serif !important;
+              font-weight: normal;
+              font-size: 14px;
+            "
+          ></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Action</td>
+        <td>
+          <input
+            type="Submit"
+            style="
+              padding: 4px 10px;
+              border: 1px solid grey;
+              font-weight: normal;
+              cursor: pointer;
+              font-size: 14px;
+              background:transparent;
+            "
+          />
+        </td>
+      </tr>
+    </form>
+  </table>
+</div>
+
+{% endblock %}

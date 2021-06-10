@@ -23,7 +23,9 @@ urlpatterns = [
 
     path('work-info/<id>', workDescription , name = "workDescription"),
     path('work-bids/<id>', workBids , name = "workBids"),
-
+    path('assign/<id>',workAssign , name = "workAssign"),
+    path('work-edit/<id>', workEdit , name = "workEdit"),
+    path('work-review/<id>', workReview , name = "workReview"),
 
 
     path('search',search , name = "search"),

@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<title>Edit Work</title>
+<link rel="stylesheet" href="{% static 'works.css' %}" />
+
+<style>
+  .bg {
+    height: auto;
+    width: 100%;
+    background: rgba(199, 201, 202, 0.3);
+    padding-bottom: 50px;
+
+  }
+</style>
+{% endblock %} {% block body %} {% load static %}
+<div class="bg">
+  <div class="profile_section">
+    <form method="POST" action="" style="border: 2px solid rgba(172, 13, 40, 0.836);">
+        {% csrf_token %}
+    
+            <h3 style="color: crimson;margin-left: 15px;">Update Work</h3>
+            <form action="{% url 'myworks' %}" method="POST" class="form__work">
+              {% csrf_token %}
+              <input type="text" placeholder="Work Name or Title" name="work_name" value="{{obj.title}}"  required />
+              <input type="text" placeholder="Max Amount in Rs." name="amount" value="{{obj.maxamount}}" required/>
+              <input type="text" placeholder="Max Days " name="days" value="{{obj.maxdays}} " required/>
+              <select name="occupation" class="show_item_one" required>
+                <option value="{{obj.category}}" default>Occupation - {{obj.category}}</option>
+                <option value="IT Worker (Website, App etc.)">
+                  IT Worker (Website, App etc.)
+                </option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Designer">Designer</option>
+                <option value="Household Worker">Household Worker</option>
+                <option value="Cattering Services">Cattering Services</option>
+                <option value="Tutor">Tutor</option>
+                <option value="Painter">Painter</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Tailor">Tailor</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Mechanic">Mechanic</option>
+              </select>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Write about Work"
+                rows="4" required
+              >{{obj.description}}</textarea>
+              <input type="submit" value="Submit" name="Submit" class="btn" />
+            </form>
+    
+    
+    {% if msg %}
+    <span class="error" style="color: red;margin-left: 20px;">{{msg}}</span>
+    {% endif %}
+    <!-- <button style="text-decoration: none;background: tomato;padding: 6px 8px;color: white;font-size: 18px;margin: 10px 0px;font-weight: 400;box-shadow: 4px 4px 5px rgba(199, 201, 202, 0.8);border-radius: 4px;">Save Profile</button> -->
+
+    
+        </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

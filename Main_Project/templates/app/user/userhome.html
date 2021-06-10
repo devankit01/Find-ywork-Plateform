@@ -1,284 +1,149 @@
 <div class="userhome_container">
+  <div class="search_option">
+    <form
+      class="search_form"
+      action="{% url 'search' %}"
+      name="search"
+      value="{{request.GET.q}}"
+      method="GET"
+    >
+      <input
+        type="text"
+        placeholder="Search here "
+        name="q"
+        value="{{request.GET.q}}"
+        autocomplete="off"
+      />
+      <button type="submit" value="Search">🔎</button>
+    </form>
+  </div>
 
-    <div class="search_option">
-        <form class="search_form"  action="{% url 'search' %}" name="search" value="{{request.GET.q}}" method="GET" >
-      
-            <input type="text" placeholder="Search here "  name="q" value="{{request.GET.q}}" autocomplete="off"/>
-            <button type="submit" value="Search">🔎</button>
-        </form>
-    </div>
-
-
-    <div class="headline">
+  <div class="headline">
     <h2>Near You</h2>
     <div class="line" style="width: 112px; margin: -19px 0px 4px 0px"></div>
-</div>
+  </div>
 
-    {% load static %}
+  {% load static %}
 
-    <!-- workers near you -->
-    <div class="row">
-        <div class="column">
-          <div class="card">
-      
-                <div class="left">
-               
-       
-        <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                </div>
-                <div class="right">
-                  
-                    <h2>Vinay Kumar &nbsp;<a href=""><i class="bi bi-box-arrow-up-right"></i></a></h2>
-                   
-                    <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                    <!-- <span>Rating : 4.2+</span> -->
-                    <span>🏠 Aliganj, Lucknow (226021)</span>
-                    <div style="margin: 14px 0px;">
-                    <a href="tel:9140562195" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;color:#000;">Call Me</a>
-                    <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                    
-                </div>
+  <!-- workers near you -->
+  <div class="row">
+    {% for i in workerObj %}
+    <div class="column">
+      <div class="card">
+        <div class="left">
+          <img
+            src="{% static 'images/male.png' %}"
+            alt="profile"
+            width="60px"
+            height="60px"
+            style="border-radius: 50%"
+          />
+        </div>
+        <div class="right">
+          <h2>
+            {{i.username.first_name}} {{i.username.last_name}} &nbsp;<a href="{% url 'seeprofile' key=i.username %}" 
+              ><i class="bi bi-box-arrow-up-right"></i
+            ></a>
+          </h2>
 
-               
-
-            </div>
+          <span style="color: rgba(0, 0, 0, 0.4); font-weight: 600"
+            >{{i.occupation}}</span
+          >
+          <!-- <span>Rating : 4.2+</span> -->
+          <span>🏠 {{i.address}} ({{i.pincode}})</span>
+          <div style="margin: 14px 0px">
+            <a
+              href="tel:{{i.phone}"
+              style="
+                padding: 3px 5px;
+                border: 1px solid darkblue;
+                border-radius: 3px;
+                text-decoration: none;
+                margin: 0px 0px;
+                color: #000;
+              "
+              >Call Me</a
+            >
+            <a
+              href="https://wa.me/{{i.phone}}"
+              style="
+                padding: 3px 5px;
+                border: 1px solid darkblue;
+                border-radius: 3px;
+                text-decoration: none;
+                margin: 0px 10px;
+                color: #000;
+              "
+              >Chat Me</a
+            >
           </div>
         </div>
-
-        <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-        
-   
-        
-   
       </div>
-    <!-- ---------------------------------- -->
-
-    <!-- Top Rated Workers -->
-    <div class="headline">
-        <h2>Top Rated</h2>
-        <div class="line" style="width: 125px; margin: -19px 0px 4px 0px"></div>
     </div>
+    {% endfor %}
+  </div>
+  <!-- ---------------------------------- -->
 
+  <!-- Top Rated Workers -->
+  <div class="headline">
+    <h2>Top Rated</h2>
+    <div class="line" style="width: 125px; margin: -19px 0px 4px 0px"></div>
+  </div>
 
-    <div class="row">
-        <div class="column">
-          <div class="card">
-      
-                <div class="left">
-       
-        <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                </div>
-                <div class="right">
-                    <h2>Vinay Kumar</h2>
-                   
-                    <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                    <!-- <span>Rating : 4.2+</span> -->
-                    <span>🏠 Aliganj, Lucknow (226021)</span>
-                    <div style="margin: 14px 0px;">
-                    <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                    <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                </div>
+  <div class="row">
+    {% for i in workerObj %}
+    <div class="column">
+      <div class="card">
+        <div class="left">
+          <img
+            src="{% static 'images/male.png' %}"
+            alt="profile"
+            width="60px"
+            height="60px"
+            style="border-radius: 50%"
+          />
+        </div>
+        <div class="right">
+          <h2>
+            {{i.username.first_name}} {{i.username.last_name}} &nbsp;<a href="{% url 'seeprofile' key=i.username %}" 
+              ><i class="bi bi-box-arrow-up-right"></i
+            ></a>
+          </h2>
 
-               
-
-            </div>
+          <span style="color: rgba(0, 0, 0, 0.4); font-weight: 600"
+            >{{i.occupation}}</span
+          >
+          <!-- <span>Rating : 4.2+</span> -->
+          <span>🏠 {{i.address}} ({{i.pincode}})</span>
+          <div style="margin: 14px 0px">
+            <a
+              href="tel:{{i.phone}}"
+              style="
+                padding: 3px 5px;
+                border: 1px solid darkblue;
+                border-radius: 3px;
+                text-decoration: none;
+                margin: 0px 0px;
+                color: #000;
+              "
+              >Call Me</a
+            >
+            <a
+              href="https://wa.me/{{i.phone}}"
+              style="
+                padding: 3px 5px;
+                border: 1px solid darkblue;
+                border-radius: 3px;
+                text-decoration: none;
+                margin: 0px 10px;
+                color: #000;
+              "
+              >Chat Me</a
+            >
           </div>
         </div>
-
-        <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-        
-                  <div class="left">
-         
-          <img  src="{% static 'images/male.png' %}" alt="profile" width="60px" height="60px" style="border-radius: 50%;"/>
-                  </div>
-                  <div class="right">
-                      <h2>Vinay Kumar</h2>
-                     
-                      <span style="color: rgba(0,0,0,0.4);font-weight: 600;">Electrician</span>
-                      <!-- <span>Rating : 4.2+</span> -->
-                      <span>🏠 Aliganj, Lucknow (226021)</span>
-                      <div style="margin: 14px 0px;">
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 0px;">Call Me</a>
-                      <a href="" style="padding: 3px 5px; border: 1px solid darkblue;border-radius: 3px;text-decoration: none;margin: 0px 10px;">Chat Me</a>
-                  </div>
-  
-                 
-  
-              </div>
-            </div>
-          </div>
-        
-   
-        
-   
       </div>
-
-    
+    </div>
+    {% endfor %}
+  </div>
 </div>
