@@ -8,8 +8,8 @@ from datetime import date
 today = date.today()
 # Create your views here.
 from twilio.rest import Client
-account_sid = 'ACdc2fb4e2b92b67953f39257b118a7487'
-auth_token = '2cec0390e9bf428a42134d5800f9655b'
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 
